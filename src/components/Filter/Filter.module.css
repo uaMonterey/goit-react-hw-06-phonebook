@@ -1,0 +1,21 @@
+.label {
+  font-size: 21px;
+  font-style: italic;
+
+  color: rgba(51, 236, 5, 0.993);
+}
+
+.title {
+  padding-left: 15px;
+  margin: 20px 0px 10px;
+  font-weight: bold;
+}
+
+.input {
+  margin-left: 15px;
+  width: 210px;
+}
+
+.input:focus {
+  outline-color: rgba(51, 236, 5, 0.993);
+}
