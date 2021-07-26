@@ -34,13 +34,21 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     const { contactList, onSubmit } = this.props;
 
-    contactList.some(
-      contact => name.toLowerCase() === contact.name.toLowerCase(),
-    )
-      ? alert(`${name} is already in contacts.`)
-      : onSubmit(name, number);
+    if (
+      contactList.some(
+        contact => name.toLowerCase() === contact.name.toLowerCase(),
+      )
+    ) {
+      alert(`${name} is already in contacts.`);
+      return;
+    }
+    if (contactList.some(contact => number === contact.number)) {
+      alert(`${number} is already in contacts.`);
+      return;
+    }
 
-    this.setState({ name: '', number: '' });
+    onSubmit(this.state);
+    // this.setState({ name: '', number: '' });
     this.reset();
   };
 

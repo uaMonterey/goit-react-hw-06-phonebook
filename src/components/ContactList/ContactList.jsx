@@ -6,10 +6,10 @@ import PropTypes from 'prop-types';
 
 import s from './ContactList.module.css';
 
-const ContactList = ({ contacts, onContactDelete }) => {
+const ContactList = ({ allContacts, onContactDelete }) => {
   return (
     <ul className={s.list}>
-      {contacts.map(({ name, id, number }) => (
+      {allContacts.map(({ name, id, number }) => (
         <li className={s.item} key={id}>
           <div className={s.wrap}>
             <span className={s.name}>
@@ -30,15 +30,15 @@ const ContactList = ({ contacts, onContactDelete }) => {
 };
 
 const getCurrentContacts = (contacts, filter) => {
-  const normalizeFilterRequest = filter.toLowerCase().trim();
+  const normalizedFilter = filter.toLowerCase().trim();
 
   return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizeFilterRequest),
+    contact.name.toLowerCase().includes(normalizedFilter),
   );
 };
 
 const mapStateToProps = ({ contacts: { items, filter } }) => ({
-  contacts: getCurrentContacts(items, filter),
+  allContacts: getCurrentContacts(items, filter),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
+  allContacts: PropTypes.array.isRequired,
   onContactDelete: PropTypes.func.isRequired,
 };
 
